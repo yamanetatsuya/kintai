@@ -1,0 +1,9 @@
+<li>
+  <%= link_to user.name, user %>
+  <!-- ログインしているユーザーが管理者かつ、ログインしているユーザーが自分(＝管理者)でなければOK。
+  自身を削除してしまわないようにしている-->
+  <% if current_user.admin? && !current_user?(user) %>
+    | <%= link_to "削除", user, method: :delete,
+                         data: { confirm: "削除してよろしいですか？" } %>
+  <% end %>
+</li>
